@@ -28,7 +28,7 @@ const CreateUser = () => {
         <Box flexGrow={1} sx={{ position: "relative" }}>
           <div
             style={{
-              position: "absolute",
+              // position: "absolute",
               backgroundColor: "white",
               filter: open ? "blur(3px)" : 1,
             }}
