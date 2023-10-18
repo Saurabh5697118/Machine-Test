@@ -1,0 +1,32 @@
+.MuiCardHeader-action {
+    position: relative;
+    top: 4px;
+    right: 8px;
+    bottom: 4px;
+}
+
+.MuiCardHeader-avatar{
+    position: relative;
+    right: 0px;
+}
+
+.MuiCardHeader-root{
+    padding: 0;
+}
+img{
+    width: 100%;
+    height:auto;
+    max-width: 100px;
+    max-height: 100px;
+}
+.nextButton{
+    background: rgb(35 155 216);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    min-width: 12%;
+    padding: 1%;
+    font-size: small;
+    font-family: 'Montserrat-SemiBold';
+    cursor: pointer;
+}

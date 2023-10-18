@@ -1,0 +1,23 @@
+.nextButton{
+    background: rgb(35 155 216);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    min-width: 12%;
+    padding: 10px;
+    font-size: small;
+    font-family: 'Montserrat-SemiBold';
+    cursor: pointer;
+}
+.backButton{
+    background: rgb(227, 231, 233);
+    color: black;
+    border: none;
+    border-radius: 3px;
+    min-width: 12%;
+    padding: 10px;
+    font-size: small;
+    font-family: 'Montserrat-SemiBold';
+    cursor: pointer;
+    margin-right: 1%;
+}
