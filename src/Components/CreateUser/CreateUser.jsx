@@ -17,10 +17,8 @@ const CreateUser = () => {
   const navigate = useNavigate();
   const tabView1 = useMediaQuery("(min-width:1000px)");
   const padView = useMediaQuery("(min-width:600px)");
-  const cardTemplateId = useLocation()
-  const { state : { cardId } } = cardTemplateId
-
- 
+  const cardTemplateId = useLocation();
+  const {  state: { cardId }  } = cardTemplateId;
 
   return (
     <>
@@ -28,7 +26,6 @@ const CreateUser = () => {
         <Box flexGrow={1} sx={{ position: "relative" }}>
           <div
             style={{
-              // position: "absolute",
               backgroundColor: "white",
               filter: open ? "blur(3px)" : 1,
             }}
@@ -67,29 +64,31 @@ const CreateUser = () => {
                   }}
                 />
               </Grid>
-{cardId == 'mediaCard' ? 
-<>
+              {cardId == "mediaCard" ? (
+                <>
+                  <Grid container spacing={{ xs: 2, sm: 3, md: 5 }}>
+                    <TextingFields
+                      title={"Landscape Marketing Image (1:9:1)"}
+                      sm={6}
+                      lg={4}
+                    />
+                    <TextingFields
+                      title={"Portrait Marketing Image (4:5)"}
+                      sm={6}
+                      lg={4}
+                    />
+                    <TextingFields
+                      title={"Square Marketing Image (1:1)"}
+                      sm={6}
+                      lg={4}
+                    />
+                  </Grid>
 
-              <Grid container spacing={{ xs: 2, sm: 3, md: 5 }}>
-                <TextingFields
-                  title={"Landscape Marketing Image (1:9:1)"}
-                  sm={6}
-                  lg={4}
-                />
-                <TextingFields
-                  title={"Portrait Marketing Image (4:5)"}
-                  sm={6}
-                  lg={4}
-                />
-                <TextingFields
-                  title={"Square Marketing Image (1:1)"}
-                  sm={6}
-                  lg={4}
-                />
-              </Grid>
-
-              <TextingFields title="Video URL" xs={12} />
-</>:<></>}
+                  <TextingFields title="Video URL" xs={12} />
+                </>
+              ) : (
+                 <> </>
+              )}
 
               <Grid container spacing={{ xs: 2, sm: 3, md: 5 }}>
                 <TextingFields title={"Business Name"} sm={6} lg={6} />
@@ -103,7 +102,7 @@ const CreateUser = () => {
 
               <TextingFields title={"Website URL"} />
 
-              <Grid item xs={12} textAlign={"right"}>
+              <Grid item xs={12} textAlign={"right"} paddingTop={cardId !== "mediaCard" ? 15 : 0} >
                 <button
                   className="backButton"
                   onClick={() => {

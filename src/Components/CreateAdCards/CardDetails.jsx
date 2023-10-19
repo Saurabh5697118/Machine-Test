@@ -15,7 +15,13 @@ import Skeleton from "@mui/material/Skeleton";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./cardAds.css";
 
-const CardDetails = ({ textAd =false, onClick, id, textCard=false, mediaCard=false }) => {
+const CardDetails = ({
+  textAd = false,
+  onClick,
+  id,
+  textCard = false,
+  mediaCard = false,
+}) => {
   const itemData = [
     {
       img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
@@ -38,7 +44,7 @@ const CardDetails = ({ textAd =false, onClick, id, textCard=false, mediaCard=fal
         boxShadow: "1px 2px 8px #b3b3b3",
         borderRadius: 3,
         height: "auto",
-        cursor: 'pointer'
+        cursor: "pointer",
       }}
       onClick={onClick}
     >
@@ -46,7 +52,9 @@ const CardDetails = ({ textAd =false, onClick, id, textCard=false, mediaCard=fal
         sx={{
           "& .MuiSvgIcon-root": { fontSize: { xs: 20, sm: 30 } },
         }}
-        checked={id == 'textCard' && textCard || mediaCard && id == 'mediaCard'}
+        checked={
+          (id == "textCard" && textCard) || (mediaCard && id == "mediaCard")
+        }
       />
       <CardContent sx={{ padding: "0px 10%" }}>
         <Card
@@ -162,12 +170,11 @@ const CardDetails = ({ textAd =false, onClick, id, textCard=false, mediaCard=fal
                     </a>
                     <br />
                     <a
-                    
                       style={{
                         textDecoration: "none",
                         color: "green",
                         display: "flex",
-                        height: '10px',
+                        height: "10px",
                         gap: 4,
                       }}
                     >

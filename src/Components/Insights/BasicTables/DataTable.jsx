@@ -13,14 +13,35 @@ import {
 } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-const createData = (a, b, c, d, e, f) => ({
-  campaigns: a,
-  clicks: b,
-  cost: c,
-  conversions: d,
-  revenue: e,
-  id: f,
-});
+let totalSumRow = {
+  campaigns: "Total",
+  clicks: 0,
+  cost: 0,
+  conversions: 0,
+  revenue: 0,
+};
+
+const createData = (
+  campaignName,
+  clicksNumber,
+  costNumber,
+  conversionNumber,
+  revenueAmt,
+  userId
+) => {
+  totalSumRow.clicks += clicksNumber;
+  totalSumRow.cost += costNumber;
+  totalSumRow.conversions += conversionNumber;
+  totalSumRow.revenue += revenueAmt;
+  return {
+    campaigns: campaignName,
+    clicks: clicksNumber,
+    cost: `USD ${costNumber}`,
+    conversions: conversionNumber,
+    revenue: `USD ${revenueAmt}`,
+    id: userId,
+  };
+};
 
 const data = [
   createData("Cosmetics", 712, 4272, 24, 4650, 1),
@@ -29,7 +50,6 @@ const data = [
   createData("shampoos", 439, 2151, 67, 4455, 4),
   createData("Conditioners", 1680, 3864, 49, 175245, 5),
   createData("Facewash 2", 4978, 29370, 189, 623106, 6),
-  createData("Total", 26510, 143819, 498, 1573563, 7),
 ];
 
 const columns = [
@@ -64,7 +84,7 @@ export default function DataTable() {
         sx={{ maxWidth: { xs: 700, lg: "100%" } }}
         component={Paper}
       >
-        <Table size={"medium"}>
+        <Table size={"medium"} sx={{ minWidth: "max-content" }}>
           <TableHead>
             <TableRow height={63}>
               <TableCell
@@ -121,11 +141,64 @@ export default function DataTable() {
                       paddingRight: 3,
                     }}
                   >
-                    {column.id === 'cost' || column.id === 'revenue' ? `USD ${row[column.id]}` : row[column.id]}
+                    {row[column.id]}
                   </TableCell>
                 ))}
               </TableRow>
             ))}
+
+            <TableRow sx={{ backgroundColor: "#f2f2f2" }}>
+              <TableCell
+                align={"left"}
+                sx={{
+                  fontFamily: "Montserrat-Light",
+                  lineHeight: 0.5,
+                  paddingRight: 3,
+                }}
+              >
+                {totalSumRow.campaigns}
+              </TableCell>
+              <TableCell
+                align={"right"}
+                sx={{
+                  fontFamily: "Montserrat-Light",
+                  lineHeight: 0.5,
+                  paddingRight: 3,
+                }}
+              >
+                {totalSumRow.clicks}
+              </TableCell>
+              <TableCell
+                align={"right"}
+                sx={{
+                  fontFamily: "Montserrat-Light",
+                  lineHeight: 0.5,
+                  paddingRight: 3,
+                }}
+              >
+                {`USD ${totalSumRow.cost}`}
+              </TableCell>
+              <TableCell
+                align={"right"}
+                sx={{
+                  fontFamily: "Montserrat-Light",
+                  lineHeight: 0.5,
+                  paddingRight: 3,
+                }}
+              >
+                {totalSumRow.conversions}
+              </TableCell>
+              <TableCell
+                align={"right"}
+                sx={{
+                  fontFamily: "Montserrat-Light",
+                  lineHeight: 0.5,
+                  paddingRight: 3,
+                }}
+              >
+                {`USD ${totalSumRow.revenue}`}
+              </TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>

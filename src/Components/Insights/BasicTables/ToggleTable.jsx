@@ -42,9 +42,9 @@ const createData = (
   return {
     campaigns: campaignName,
     clicks: clicksNumber,
-    cost: costNumber,
+    cost: `USD ${costNumber}`,
     conversions: conversionNumber,
-    revenue: revenueAmt,
+    revenue: `USD ${revenueAmt}`,
     id: userId,
   };
 };
@@ -54,6 +54,7 @@ const data1 = [
   createData("Female", 692, 24912, 35, 5175, 2),
   createData("Unknown", 105, 3943, 3, 4489, 3),
 ];
+
 const data2 = [
   createData("Male", 3481, 1258, 142, 618, 1),
   createData("Female", 1692, 4912, 315, 515, 2),
@@ -72,7 +73,7 @@ export default function ToggleTable() {
   const [showTable, setShowTable] = useState(false);
   const [orderBy, setOrderBy] = useState("campaigns");
   const [order, setOrder] = useState("desc");
-  const [ changeTable, setChangeTable ] = useState(data1)
+  const [changeTable, setChangeTable] = useState(data1);
 
   const handleSortRequest = (property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -104,7 +105,7 @@ export default function ToggleTable() {
         sx={{ maxWidth: { xs: 700, lg: "100%" }, position: "relative" }}
         component={Paper}
       >
-        <Table size={"medium"}>
+        <Table size={"medium"} sx={{ minWidth: "max-content" }}>
           <TableHead>
             <TableRow height={63}>
               <TableCell
@@ -143,8 +144,8 @@ export default function ToggleTable() {
             </TableRow>
           </TableHead>
         </Table>
-        {showTable ? (
-          <Table size={"medium"}>
+        {showTable && (
+          <Table size={"medium"} sx={{ minWidth: "max-content" }}>
             <TableHead>
               <TableRow>
                 {columns.map((column) => (
@@ -181,68 +182,67 @@ export default function ToggleTable() {
                         paddingRight: 3,
                       }}
                     >
-                      {column.id === "cost" || column.id === "revenue"
-                        ? `USD ${row[column.id]}`
-                        : row[column.id]}
+                      {row[column.id]}
                     </TableCell>
                   ))}
                 </TableRow>
               ))}
-              <TableRow sx={{ backgroundColor: '#f2f2f2' }}>
-                  <TableCell
-                    align={"left"}
-                    sx={{
-                      fontFamily: "Montserrat-Light",
-                      lineHeight: 0.5,
-                      paddingRight: 3,
-                    }}
-                  >{totalSumRow.campaigns}
-                  </TableCell>
-                  <TableCell
-                    align={"right"}
-                    sx={{
-                      fontFamily: "Montserrat-Light",
-                      lineHeight: 0.5,
-                      paddingRight: 3,
-                    }}
-                  >{totalSumRow.clicks}
-                  </TableCell>
-                  <TableCell
-                    align={"right"}
-                    sx={{
-                      fontFamily: "Montserrat-Light",
-                      lineHeight: 0.5,
-                      paddingRight: 3,
-                    }}
-                  >{`USD ${totalSumRow.cost}`}
-                  </TableCell>
-                  <TableCell
-                    align={"right"}
-                    sx={{
-                      fontFamily: "Montserrat-Light",
-                      lineHeight: 0.5,
-                      paddingRight: 3,
-                    }}
-                  >{totalSumRow.conversions}
-                  </TableCell>
-                  <TableCell
-                    align={"right"}
-                    sx={{
-                      fontFamily: "Montserrat-Light",
-                      lineHeight: 0.5,
-                      paddingRight: 3,
-                    }}
-                  >{`USD ${totalSumRow.revenue}`}
-                  </TableCell>
+              <TableRow sx={{ backgroundColor: "#f2f2f2" }}>
+                <TableCell
+                  align={"left"}
+                  sx={{
+                    fontFamily: "Montserrat-Light",
+                    lineHeight: 0.5,
+                    paddingRight: 3,
+                  }}
+                >
+                  {totalSumRow.campaigns}
+                </TableCell>
+                <TableCell
+                  align={"right"}
+                  sx={{
+                    fontFamily: "Montserrat-Light",
+                    lineHeight: 0.5,
+                    paddingRight: 3,
+                  }}
+                >
+                  {totalSumRow.clicks}
+                </TableCell>
+                <TableCell
+                  align={"right"}
+                  sx={{
+                    fontFamily: "Montserrat-Light",
+                    lineHeight: 0.5,
+                    paddingRight: 3,
+                  }}
+                >
+                  {`USD ${totalSumRow.cost}`}
+                </TableCell>
+                <TableCell
+                  align={"right"}
+                  sx={{
+                    fontFamily: "Montserrat-Light",
+                    lineHeight: 0.5,
+                    paddingRight: 3,
+                  }}
+                >
+                  {totalSumRow.conversions}
+                </TableCell>
+                <TableCell
+                  align={"right"}
+                  sx={{
+                    fontFamily: "Montserrat-Light",
+                    lineHeight: 0.5,
+                    paddingRight: 3,
+                  }}
+                >
+                  {`USD ${totalSumRow.revenue}`}
+                </TableCell>
               </TableRow>
-
-          
             </TableBody>
           </Table>
-        ) : (
-          " "
         )}
-        {!showTable ? (
+        {!showTable && (
           <div
             style={{
               display: "flex",
@@ -266,24 +266,26 @@ export default function ToggleTable() {
               {...size}
             />
           </div>
-        ) : (
-          " "
         )}
-        <label className="switch">
-          <input type="checkbox" onClick={() => setShowTable(!showTable)} />
-          <span className="slider round">
-            <img
-              alt="donutImg"
-              src={donut}
-              style={{ width: "30px", padding: "5px" }}
-            />
-            <img
-              alt="tableImg"
-              src={table}
-              style={{ width: "30px", padding: "5px" }}
-            />
-          </span>
-        </label>
+        <div
+          style={{ height: showTable ? 65 : 0, paddingTop: showTable ? 15 : 0 }}
+        >
+          <label className="switch">
+            <input type="checkbox" onClick={() => setShowTable(!showTable)} />
+            <span className="slider round">
+              <img
+                alt="donutImg"
+                src={donut}
+                style={{ width: "30px", padding: "5px" }}
+              />
+              <img
+                alt="tableImg"
+                src={table}
+                style={{ width: "30px", padding: "5px" }}
+              />
+            </span>
+          </label>
+        </div>
       </TableContainer>
     </>
   );
