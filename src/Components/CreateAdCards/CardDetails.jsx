@@ -14,6 +14,7 @@ import Skeleton from "@mui/material/Skeleton";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import "./cardAds.css";
+import { dummyImages } from "../../Constants/DummyImageData";
 
 const CardDetails = ({
   textAd = false,
@@ -22,20 +23,7 @@ const CardDetails = ({
   textCard = false,
   mediaCard = false,
 }) => {
-  const itemData = [
-    {
-      img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
-      title: "Breakfast",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
-      title: "Burger",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
-      title: "Camera",
-    },
-  ];
+  
 
   return (
     <Card
@@ -203,13 +191,15 @@ const CardDetails = ({
                       margin: 0,
                     }}
                   >
-                    {itemData.map((item) => (
+                    {dummyImages.map((item) => (
                       <ImageListItem key={item.img}>
                         <img
                           srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                           src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
                           alt={item.title}
                           loading="lazy"
+                          height={40}
+                          width={40}
                         />
                       </ImageListItem>
                     ))}
