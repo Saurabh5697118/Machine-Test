@@ -138,7 +138,7 @@ const CardDetails = ({
                   sx={{
                     border: "1px #E8E8E8 solid",
                     borderRadius: 2,
-                    minWidth: 80,
+                    minWidth:65,
                     maxHeight: 150,
                   }}
                 >
@@ -151,6 +151,7 @@ const CardDetails = ({
                       overflow: { xs: "hidden", sm: "visible" },
                       whiteSpace: { xs: "nowrap", sm: "normal" },
                     }}
+                    component={'div'}
                   >
                     <a style={{ textDecoration: "none" }}>
                       100-B1DBNC2 | is stock and ready to ship | Great Member
