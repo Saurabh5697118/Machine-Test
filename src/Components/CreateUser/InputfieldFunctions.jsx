@@ -35,13 +35,13 @@ export const TextingFields = ({
           multiline={multiline}
           inputProps={inputProps}
           fullWidth
-          size={tabViewMax ? "large" : "small"}
+          size={tabView ? "large" : "small"}
           InputProps={{
             style: { fontFamily: fontFamilies.medium, letterSpacing: 1 },
           }}
         />
       ) : (
-        <Select fullWidth size={tabViewMax ? "large" : "small"} />
+        <Select fullWidth size={tabView ? "large" : "small"} />
       )}
     </Grid>
   );
