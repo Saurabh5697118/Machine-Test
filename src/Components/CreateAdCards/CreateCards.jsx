@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./cardAds.css";
 import CardDetails from "./CardDetails";
 import { useNavigate } from "react-router-dom";
+import { fontFamilies } from "../../Constants/FontConstants";
 
 const CreateCard = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const CreateCard = () => {
             }}
           >
             <Grid item>
-              <h4 style={{ margin: 0 }}>CREATE ADS</h4>
+              <h4 style={{ margin: 0, fontFamily: fontFamilies.bold }}>CREATE ADS</h4>
             </Grid>
 
             <Grid item xs={12} padding={5}>
