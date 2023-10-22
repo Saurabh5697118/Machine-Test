@@ -60,7 +60,7 @@ const CreateUser = () => {
                   multiline={true}
                   inputProps={{
                     style: {
-                      height: tabView1 ? "137px" : padView ? "auto" : "110px",
+                      height: tabViewMin ? "137px" : padView ? "auto" : "110px",
                     },
                   }}
                 />
