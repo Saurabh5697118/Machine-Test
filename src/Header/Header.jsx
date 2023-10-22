@@ -9,20 +9,25 @@ import {
 } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import {
+  fontFamilies,
+  headerTitles,
+  pageView,
+} from "../Constants/FontConstants";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const tabView = useMediaQuery("(max-width:750px)");
-  const padView = useMediaQuery("(max-width:600px)");
-  const mobView = useMediaQuery("(max-width:400px)");
+  const tabView = useMediaQuery(pageView.tabView);
+  const padView = useMediaQuery(pageView.padView);
+  const mobView = useMediaQuery(pageView.mobView);
   const navigate = useNavigate();
   return (
     <div className="header">
       <Typography
-        fontFamily={"Montserrat-Bold"}
+        fontFamily={fontFamilies.bold}
         sx={{ fontSize: { xs: 16, sm: 24, lg: 32 } }}
       >
-        APP LOGO
+        {headerTitles.appLogo}
       </Typography>
       {tabView ? (
         <>
@@ -56,7 +61,7 @@ const Header = () => {
                 navigate("/");
               }}
             >
-              Dashboard
+              {headerTitles.dropdownDashboard}
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -64,7 +69,7 @@ const Header = () => {
                 setOpen(false);
               }}
             >
-              Create Ads
+              {headerTitles.dropdownCreateAds}
             </MenuItem>
           </Menu>
         </>
@@ -75,18 +80,18 @@ const Header = () => {
             style={{ textDecoration: "none", padding: "0px 45px" }}
           >
             <Typography
-              fontFamily={"Montserrat-Medium"}
+              fontFamily={fontFamilies.medium}
               sx={{ fontSize: { sm: 16, lg: 20 }, color: "black" }}
             >
-              DASHBOARD
+              {headerTitles.dashboard}
             </Typography>
           </NavLink>
           <NavLink to="/createAds" style={{ textDecoration: "none" }}>
             <Typography
-              fontFamily={"Montserrat-Medium"}
+              fontFamily={fontFamilies.medium}
               sx={{ fontSize: { sm: 16, lg: 20 }, color: "black" }}
             >
-              CREATE ADS
+              {headerTitles.createAds}
             </Typography>
           </NavLink>
         </div>

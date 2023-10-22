@@ -73,6 +73,13 @@
     font-family: 'Montserrat-Medium';
   }
 
-.css-6hp17o-MuiList-root-MuiMenu-list{
+.MuiMenu-list{
     display: inline;
+  }
+
+  .pieChart{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 15px 20px;
   }

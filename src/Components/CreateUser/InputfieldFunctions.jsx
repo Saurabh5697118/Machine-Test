@@ -6,6 +6,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import "./createUser.css";
+import { fontFamilies, pageView } from "../../Constants/FontConstants";
 
 export const TextingFields = ({
   title,
@@ -14,15 +15,18 @@ export const TextingFields = ({
   select = false,
   multiline = false,
   inputProps = {},
-  mb = 0
+  mb = 0,
 }) => {
-  const tabView = useMediaQuery("(max-width:1024px)");
+  const tabViewMax = useMediaQuery(pageView.tabViewMax);
 
   return (
     <Grid item xs={12} sm={sm} lg={lg} textAlign={"left"} mb={mb}>
       <Typography
-        fontFamily={"Montserrat-SemiBold"}
-        sx={{ fontSize: { xs: 11, sm: 12, md: 15, lg: 18 }, mb: { xs: 0.5, sm: 1, md: 1.5  } }}
+        fontFamily={fontFamilies.semiBold}
+        sx={{
+          fontSize: { xs: 11, sm: 12, md: 15, lg: 18 },
+          mb: { xs: 0.5, sm: 1, md: 1.5 },
+        }}
       >
         {title}
       </Typography>
@@ -31,20 +35,17 @@ export const TextingFields = ({
           multiline={multiline}
           inputProps={inputProps}
           fullWidth
-          size={tabView ? "small" : "large"}
+          size={tabViewMax ? "large" : "small"}
           InputProps={{
-            style: { fontFamily: 'Montserrat-Medium', letterSpacing: 1 }
+            style: { fontFamily: fontFamilies.medium, letterSpacing: 1 },
           }}
         />
       ) : (
-        <Select fullWidth size={tabView ? "small" : "large"} />
+        <Select fullWidth size={tabViewMax ? "large" : "small"} />
       )}
     </Grid>
   );
 };
-
-
-
 
 //  styles for submitted Popup
 export const submittedButton = {

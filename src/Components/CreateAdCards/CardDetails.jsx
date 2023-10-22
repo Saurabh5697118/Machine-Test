@@ -15,6 +15,7 @@ import Skeleton from "@mui/material/Skeleton";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./cardAds.css";
 import { dummyImages } from "../../Constants/DummyImageData";
+import { fontFamilies } from "../../Constants/FontConstants";
 
 const CardDetails = ({
   textAd = false,
@@ -23,7 +24,6 @@ const CardDetails = ({
   textCard = false,
   mediaCard = false,
 }) => {
-  
 
   return (
     <Card
@@ -62,15 +62,7 @@ const CardDetails = ({
               },
             }}
           >
-            <button
-              style={{
-                height: 20,
-                width: 20,
-                borderRadius: 50,
-                border: "1px #E0E0E0 solid",
-                backgroundColor: "transparent",
-              }}
-            />
+            <button className="cameraLogo" />
           </CardContent>
           <Card sx={{ m: 2, mb: 0, height: { md: 330, xs: 270 } }}>
             <CardHeader
@@ -112,19 +104,7 @@ const CardDetails = ({
                 />
               }
             />
-            <CardContent sx={{ padding: "5px 16px" }}>
-              <Skeleton
-                animation="wave"
-                sx={{ height: { xs: 8, sm: 10, md: 13 } }}
-              />
-              <Skeleton sx={{ height: { xs: 8, sm: 10, md: 13 } }} />
-              <Skeleton sx={{ height: { xs: 8, sm: 10, md: 13 } }} />
-              <Skeleton
-                animation="wave"
-                sx={{ height: { xs: 8, sm: 10, md: 13 } }}
-                width="80%"
-              />
-            </CardContent>
+            <WaveLoadingPart />
 
             <CardContent
               sx={{
@@ -133,100 +113,10 @@ const CardDetails = ({
                 maxHeight: 150,
               }}
             >
-              {textAd ? (
-                <CardContent
-                  sx={{
-                    border: "1px #E8E8E8 solid",
-                    borderRadius: 2,
-                    minWidth:65,
-                    maxHeight: 150,
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{
-                      fontSize: { xs: 8 },
-                      textOverflow: "ellipsis",
-                      overflow: { xs: "hidden", sm: "visible" },
-                      whiteSpace: { xs: "nowrap", sm: "normal" },
-                    }}
-                    component={'div'}
-                  >
-                    <a style={{ textDecoration: "none" }}>
-                      100-B1DBNC2 | is stock and ready to ship | Great Member
-                      Rewards Program
-                    </a>
-                    <br />
-                    <a
-                      style={{
-                        textDecoration: "none",
-                        color: "green",
-                        display: "flex",
-                        height: "10px",
-                        gap: 4,
-                      }}
-                    >
-                      <span style={{ border: "1px green solid" }}>Ad</span>
-                      Cosmostyle.in
-                    </a>
-                    <hr />
-                    The Most Trusted Name in Cosmetics. Fast, Free Shipping on a
-                    Huge Selection. Use Promo Code FIRSTFREE to save 20% at
-                    checkout. Join our Family of Satisfied Customers.
-                  </Typography>
-                </CardContent>
-              ) : (
-                <CardContent
-                  sx={{
-                    padding: 0,
-                  }}
-                >
-                  <ImageList
-                    variant="masonry"
-                    sx={{
-                      overflow: "hidden",
-                      display: "flex",
-                      flexWrap: "wrap",
-                      maxHeight: 150,
-                      margin: 0,
-                    }}
-                  >
-                    {dummyImages.map((item) => (
-                      <ImageListItem key={item.img}>
-                        <img
-                          srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                          src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                          alt={item.title}
-                          loading="lazy"
-                          height={40}
-                          width={40}
-                        />
-                      </ImageListItem>
-                    ))}
-                  </ImageList>
-                </CardContent>
-              )}
+              {textAd ? <TextCard /> : <MediaCard />}
             </CardContent>
 
-            {textAd ? (
-              <CardContent sx={{ padding: "5px 16px" }}>
-                <Skeleton
-                  animation="wave"
-                  sx={{ height: { xs: 8, sm: 10, md: 13 } }}
-                />
-                <Skeleton
-                  animation="wave"
-                  sx={{ height: { xs: 8, sm: 10, md: 13 } }}
-                />
-                <Skeleton sx={{ height: { xs: 8, sm: 10, md: 13 } }} />
-                <Skeleton
-                  animation="wave"
-                  sx={{ height: { xs: 8, sm: 10, md: 13 } }}
-                  width="80%"
-                />
-              </CardContent>
-            ) : null}
+            {textAd && <WaveLoadingPart />}
           </Card>
         </Card>
       </CardContent>
@@ -241,19 +131,116 @@ const CardDetails = ({
         <Typography
           textAlign={"center"}
           fontSize={{ xs: 5, sm: 10, md: 15 }}
-          fontFamily={"Montserrat-Light"}
+          fontFamily={fontFamilies.light}
         >
           Create
         </Typography>
         <Typography
           textAlign={"center"}
           fontSize={{ xs: 10, sm: 15, md: 20 }}
-          fontFamily={"Montserrat-Bold"}
+          fontFamily={fontFamilies.bold}
         >
           {textAd ? "Text Ad" : "Media Ad"}
         </Typography>
       </CardContent>
     </Card>
+  );
+};
+
+const TextCard = () => {
+  return (
+    <CardContent
+      sx={{
+        border: "1px #E8E8E8 solid",
+        borderRadius: 2,
+        minWidth: 65,
+        maxHeight: 150,
+      }}
+    >
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{
+          fontSize: { xs: 8 },
+          textOverflow: "ellipsis",
+          overflow: { xs: "hidden", sm: "visible" },
+          whiteSpace: { xs: "nowrap", sm: "normal" },
+        }}
+        component={"div"}
+      >
+        <a style={{ textDecoration: "none" }}>
+          100-B1DBNC2 | is stock and ready to ship | Great Member Rewards
+          Program
+        </a>
+        <br />
+        <a
+          style={{
+            textDecoration: "none",
+            color: "green",
+            display: "flex",
+            height: "10px",
+            gap: 4,
+          }}
+        >
+          <span style={{ border: "1px green solid" }}>Ad</span>
+          Cosmostyle.in
+        </a>
+        <hr />
+        The Most Trusted Name in Cosmetics. Fast, Free Shipping on a Huge
+        Selection. Use Promo Code FIRSTFREE to save 20% at checkout. Join our
+        Family of Satisfied Customers.
+      </Typography>
+    </CardContent>
+  );
+};
+
+const MediaCard = () => {
+  return (
+    <CardContent
+      sx={{
+        padding: 0,
+      }}
+    >
+      <ImageList
+        variant="masonry"
+        sx={{
+          overflow: "hidden",
+          display: "flex",
+          flexWrap: "wrap",
+          maxHeight: 150,
+          margin: 0,
+        }}
+      >
+        {dummyImages.map((item) => (
+          <ImageListItem key={item.img}>
+            <img
+              srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+              alt={item.title}
+              loading="lazy"
+              height={40}
+              width={40}
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </CardContent>
+  );
+};
+
+
+const WaveLoadingPart = () => {
+  return (
+    <CardContent sx={{ padding: "5px 16px" }}>
+      <Skeleton animation="wave" sx={{ height: { xs: 8, sm: 10, md: 13 } }} />
+      <Skeleton sx={{ height: { xs: 8, sm: 10, md: 13 } }} />
+      <Skeleton sx={{ height: { xs: 8, sm: 10, md: 13 } }} />
+      <Skeleton
+        animation="wave"
+        sx={{ height: { xs: 8, sm: 10, md: 13 } }}
+        width="80%"
+      />
+    </CardContent>
   );
 };
 

@@ -11,12 +11,13 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./createUser.css";
 import { TextingFields, submittedButton } from "./InputfieldFunctions";
+import { fontFamilies, pageView } from "../../Constants/FontConstants";
 
 const CreateUser = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const tabView1 = useMediaQuery("(min-width:1000px)");
-  const padView = useMediaQuery("(min-width:600px)");
+  const tabViewMin = useMediaQuery(pageView.tabViewMin);
+  const padView = useMediaQuery(pageView.padView);
   const cardTemplateId = useLocation();
   const {  state: { cardId }  } = cardTemplateId;
 
@@ -39,7 +40,7 @@ const CreateUser = () => {
             >
               <Grid item xs={12} textAlign={"left"}>
                 <Typography
-                  fontFamily={"Montserrat-SemiBold"}
+                  fontFamily={fontFamilies.semiBold}
                   sx={{ fontSize: { xs: 13, sm: 15, md: 18, lg: 22 } }}
                 >
                   Create Text & Media
@@ -59,7 +60,7 @@ const CreateUser = () => {
                   multiline={true}
                   inputProps={{
                     style: {
-                      height: tabView1 ? "137px" : padView ? "110px" : "auto",
+                      height: tabViewMin ? "137px" : padView ? "auto": '110px',
                     },
                   }}
                 />
@@ -130,7 +131,7 @@ const CreateUser = () => {
           <Modal open={open} hideBackdrop>
             <Box sx={submittedButton} textAlign="center">
               <CheckCircleIcon color="primary" fontSize="large" />
-              <Typography fontFamily={"Montserrat-SemiBold"} mb={1}>
+              <Typography fontFamily={fontFamilies.semiBold} mb={1}>
                 Submitted
               </Typography>
             </Box>
