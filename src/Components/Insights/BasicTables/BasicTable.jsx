@@ -13,7 +13,6 @@ import {
   tableSum1,
   tableSum2,
   tableSum3,
-  totalSumRow,
 } from "./BasicTableData";
 import {
   DonutChart,
