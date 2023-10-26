@@ -88,9 +88,9 @@ export const FirstHeader = ({ dataTable, setChangeTable, changeTable }) => {
   );
 };
 
-export const TableRowData = ({ row, showSum = false }) => {
+export const TableRowData = ({ row, showSumBg = false }) => {
   return (
-    <TableRow sx={{ backgroundColor: showSum ? "#f2f2f2" : "" }}>
+    <TableRow sx={{ backgroundColor: showSumBg ? "#f2f2f2" : "" }}>
       {TableColumns.map((column) => (
         <TableCell
           align={column.id === "campaigns" ? "left" : "right"}

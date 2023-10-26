@@ -7,7 +7,14 @@ import {
 } from "@mui/material";
 import "./basicTable.css";
 import { useState } from "react";
-import { TableData1, TableData3, totalSumRow } from "./BasicTableData";
+import {
+  TableData1,
+  TableData3,
+  tableSum1,
+  tableSum2,
+  tableSum3,
+  totalSumRow,
+} from "./BasicTableData";
 import {
   DonutChart,
   DonutChartToggle,
@@ -73,7 +80,16 @@ export default function BasicTable({ dataTable = false }) {
                 <TableRowData key={row.id} row={row} />
               ))}
 
-              <TableRowData row={totalSumRow} showSum={true} />
+              <TableRowData
+                row={
+                  dataTable
+                    ? tableSum3
+                    : changeTable === TableData1
+                    ? tableSum1
+                    : tableSum2
+                }
+                showSumBg={true}
+              />
             </TableBody>
           </Table>
         )}
