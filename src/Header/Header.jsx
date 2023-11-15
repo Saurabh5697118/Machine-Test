@@ -65,7 +65,7 @@ const Header = () => {
             </MenuItem>
             <MenuItem
               onClick={() => {
-                navigate("/createUser");
+                navigate("/createAds");
                 setOpen(false);
               }}
             >
